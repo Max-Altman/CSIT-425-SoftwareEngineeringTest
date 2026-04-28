@@ -16,20 +16,13 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-// Middleware - CORS must be first
-app.use((req, res, next) => {
-  const origin = req.headers.origin;
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
-  res.header("Access-Control-Max-Age", "3600");
-  
-  if (req.method === 'OPTIONS') {
-    res.header("Content-Type", "application/json");
-    return res.status(200).end();
-  }
-  next();
-});
+app.use(cors({
+  origin: [
+    "http://localhost:5173",
+    "https://my-app-frontend-neon.vercel.app/"
+  ],
+  credentials: true
+}));
 app.use(express.json());
 
 // Initialize Neon PostgreSQL client
