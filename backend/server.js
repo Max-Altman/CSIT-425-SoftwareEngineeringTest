@@ -19,7 +19,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 app.use(cors({
   origin: [
     "http://localhost:5173",
-    "https://my-app-frontend-neon.vercel.app/"
+    "https://csit-425-software-engineering-test-max-altmans-projects.vercel.app/"
   ],
   credentials: true
 }));
